@@ -3,12 +3,13 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
-import { MoonIcon, SunIcon, MenuIcon, XIcon } from 'lucide-react'
-import { useTheme } from 'next-themes'
+import { MenuIcon, XIcon } from 'lucide-react'
+//import { MoonIcon, SunIcon, MenuIcon, XIcon } from 'lucide-react'
+//import { useTheme } from 'next-themes'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+//  const { theme, setTheme } = useTheme()
 
   const navItems = [
     { href: '#about', label: 'About' },
@@ -19,7 +20,7 @@ const Header = () => {
 
   return (
     <motion.header 
-      className="bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50 w-full border-b border-border/40"
+      className="bg-zinc-800 sticky top-0 z-50 w-full border-b border-zinc-700"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -27,7 +28,7 @@ const Header = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <motion.div 
-            className="text-xl font-semibold"
+            className="text-xl font-semibold text-zinc-100"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -39,7 +40,7 @@ const Header = () => {
               <motion.a
                 key={item.href}
                 href={item.href}
-                className="hover:text-primary transition-colors"
+                className="text-zinc-300 hover:text-zinc-100 transition-colors"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
@@ -49,19 +50,20 @@ const Header = () => {
             ))}
           </div>
           <div className="flex items-center space-x-4">
-            <Button
+            {/* <Button
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="text-zinc-300 hover:text-zinc-100"
             >
               <SunIcon className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <MoonIcon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
               <span className="sr-only">Toggle theme</span>
-            </Button>
+            </Button> */}
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden"
+              className="md:hidden text-zinc-300 hover:text-zinc-100"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
@@ -79,7 +81,7 @@ const Header = () => {
               <a
                 key={item.href}
                 href={item.href}
-                className="block py-2 hover:text-primary transition-colors"
+                className="block py-2 text-zinc-300 hover:text-zinc-100 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {item.label}

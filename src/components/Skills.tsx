@@ -11,7 +11,7 @@ const Skills = () => {
   return (
     <motion.section 
       id="skills" 
-      className="py-20 bg-secondary"
+      className="py-20 bg-zinc-800"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -19,24 +19,24 @@ const Skills = () => {
     >
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl font-bold mb-8 text-center text-secondary-foreground"
+          className="text-3xl font-bold mb-12 text-center text-zinc-100"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          Skills
+          Skills & Expertise
         </motion.h2>
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Card>
+            <Card className="bg-zinc-700 border-zinc-600 h-full">
               <CardHeader>
-                <CardTitle className="text-xl font-semibold">Technical Skills</CardTitle>
+                <CardTitle className="text-xl font-semibold text-zinc-100">Technical Skills</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -47,7 +47,7 @@ const Skills = () => {
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.2, delay: index * 0.05 }}
                     >
-                      <Badge variant="secondary">{skill}</Badge>
+                      <Badge variant="secondary" className="bg-zinc-600 text-zinc-200">{skill}</Badge>
                     </motion.div>
                   ))}
                 </div>
@@ -60,9 +60,9 @@ const Skills = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <Card>
+            <Card className="bg-zinc-700 border-zinc-600 h-full">
               <CardHeader>
-                <CardTitle className="text-xl font-semibold">Soft Skills</CardTitle>
+                <CardTitle className="text-xl font-semibold text-zinc-100">Soft Skills</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
@@ -73,7 +73,7 @@ const Skills = () => {
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.2, delay: index * 0.05 }}
                     >
-                      <Badge>{skill}</Badge>
+                      <Badge className="bg-zinc-600 text-zinc-200">{skill}</Badge>
                     </motion.div>
                   ))}
                 </div>

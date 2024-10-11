@@ -7,7 +7,7 @@ const About = () => {
   return (
     <motion.section 
       id="about" 
-      className="py-20 bg-secondary"
+      className="py-20 bg-zinc-800"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -15,7 +15,7 @@ const About = () => {
     >
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl font-bold mb-8 text-center text-secondary-foreground"
+          className="text-3xl font-bold mb-8 text-center text-zinc-100"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -23,13 +23,12 @@ const About = () => {
         >
           About Me
         </motion.h2>
-        <Card className="max-w-3xl mx-auto">
+        <Card className="max-w-3xl mx-auto bg-zinc-700">
           <CardHeader>
-            <CardTitle className="text-2xl font-semibold text-center">My Journey</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-center text-zinc-100">My Journey</CardTitle>
           </CardHeader>
-          <CardContent className="text-secondary-foreground">
+          <CardContent className="text-zinc-300 space-y-4">
             <motion.p 
-              className="mb-4"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -38,7 +37,6 @@ const About = () => {
               I am an analytical, determined, and passionate graduate with a Degree in Computer and Information Sciences, specializing in Application Development. With a strong foundation in multiple coding languages and the ability to apply data structures and algorithms effectively, I am eager to apply my technical skills in a dynamic environment.
             </motion.p>
             <motion.p 
-              className="mb-4"
               initial={{ y: 20, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
