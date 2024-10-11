@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 function App() {
   return (
     <ThemeProvider attribute="class" defaultTheme="slate-900" enableSystem>
-      <div className="flex flex-col min-h-screen bg-slate-900 text-slate-100">
+      <div className="flex flex-col w-full min-h-screen min-w-screen bg-slate-900 text-slate-100">
         <Header />
         <main className="flex-grow">
           <Hero />
