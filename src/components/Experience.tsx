@@ -1,7 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component'
+import 'react-vertical-timeline-component/style.min.css'
 import { Badge } from '@/components/ui/badge'
 
 const Experience = () => {
@@ -48,33 +49,31 @@ const Experience = () => {
         >
           Professional Experience
         </motion.h2>
-        <div className="max-w-4xl mx-auto space-y-8">
+        
+        <VerticalTimeline>
           {experiences.map((exp, index) => (
-            <motion.div
+            <VerticalTimelineElement
               key={index}
-              initial={{ y: 20, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              className="vertical-timeline-element--work"
+              contentStyle={{ background: '#1c1c1e', color: '#fff' }}
+              contentArrowStyle={{ borderRight: '7px solid  #1c1c1e' }}
+              date={exp.period}
+              iconStyle={{ background: '#4a5568', color: '#fff' }}
             >
-              <Card className="bg-zinc-800 border-zinc-700 hover:bg-zinc-750 transition-colors duration-300">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-zinc-100">{exp.title}</CardTitle>
-                  <Badge variant="secondary" className="mt-1 bg-zinc-700 text-zinc-300">
-                    {exp.company} | {exp.period}
-                  </Badge>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside space-y-2 text-zinc-300">
-                    {exp.responsibilities.map((resp, idx) => (
-                      <li key={idx} className="text-sm">{resp}</li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            </motion.div>
+              <h3 className="vertical-timeline-element-title text-xl font-semibold text-white">
+                {exp.title}
+              </h3>
+              <h4 className="vertical-timeline-element-subtitle text-sm text-gray-400">
+                {exp.company}
+              </h4>
+              <ul className="list-disc list-inside mt-4 space-y-2 text-sm text-zinc-300">
+                {exp.responsibilities.map((resp, idx) => (
+                  <li key={idx}>{resp}</li>
+                ))}
+              </ul>
+            </VerticalTimelineElement>
           ))}
-        </div>
+        </VerticalTimeline>
       </div>
     </motion.section>
   )
