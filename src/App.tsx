@@ -1,3 +1,6 @@
+'use client'
+
+import { ThemeProvider } from 'next-themes'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -7,13 +10,11 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 
 function App() {
-
-
   return (
-    <div>
-      <div className="min-h-screen bg-white dark:bg-primary text-gray-900 dark:text-gray-100">
+    <ThemeProvider attribute="class" defaultTheme="slate-900" enableSystem>
+      <div className="flex flex-col min-h-screen bg-slate-900 text-slate-100">
         <Header />
-        <main>
+        <main className="flex-grow">
           <Hero />
           <About />
           <Experience />
@@ -22,7 +23,7 @@ function App() {
         </main>
         <Footer />
       </div>
-    </div>
+    </ThemeProvider>
   )
 }
 

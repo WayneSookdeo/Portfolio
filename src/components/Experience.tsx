@@ -32,7 +32,7 @@ const Experience = () => {
   return (
     <motion.section 
       id="experience" 
-      className="py-20 bg-background"
+      className="py-20 bg-zinc-900"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -40,15 +40,15 @@ const Experience = () => {
     >
       <div className="container mx-auto px-4">
         <motion.h2 
-          className="text-3xl font-bold mb-8 text-center"
+          className="text-3xl font-bold mb-12 text-center text-zinc-100"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          Experience
+          Professional Experience
         </motion.h2>
-        <div className="max-w-3xl mx-auto space-y-6">
+        <div className="max-w-4xl mx-auto space-y-8">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
@@ -57,17 +57,17 @@ const Experience = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card>
+              <Card className="bg-zinc-800 border-zinc-700 hover:bg-zinc-750 transition-colors duration-300">
                 <CardHeader>
-                  <CardTitle className="text-xl font-semibold">{exp.title}</CardTitle>
-                  <Badge variant="secondary" className="mt-1">
+                  <CardTitle className="text-xl font-semibold text-zinc-100">{exp.title}</CardTitle>
+                  <Badge variant="secondary" className="mt-1 bg-zinc-700 text-zinc-300">
                     {exp.company} | {exp.period}
                   </Badge>
                 </CardHeader>
                 <CardContent>
-                  <ul className="list-disc list-inside space-y-2">
+                  <ul className="list-disc list-inside space-y-2 text-zinc-300">
                     {exp.responsibilities.map((resp, idx) => (
-                      <li key={idx} className="text-sm text-muted-foreground">{resp}</li>
+                      <li key={idx} className="text-sm">{resp}</li>
                     ))}
                   </ul>
                 </CardContent>
