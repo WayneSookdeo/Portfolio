@@ -1,12 +1,11 @@
-'use client'
-
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Textarea } from './ui/textarea'
 import { useToast } from '../hooks/use-toast'
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
+import emailjs from 'emailjs-com'
 
 const Contact = () => {
   const [name, setName] = useState('')
@@ -16,16 +15,35 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Here you would typically send the form data to a server
-    console.log('Form submitted:', { name, email, message })
-    // Reset form fields
-    setName('')
-    setEmail('')
-    setMessage('')
-    toast({
-      title: 'Message Sent!',
-      description: 'Thank you for your message. I will get back to you soon.',
-    })
+
+    const templateParams = {
+      name,
+      email,
+      message,
+    }
+
+    emailjs
+      .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_USER_ID')
+      .then(
+        (response) => {
+          console.log('Email sent successfully:', response.status, response.text)
+          // Reset form fields
+          setName('')
+          setEmail('')
+          setMessage('')
+          toast({
+            title: 'Message Sent!',
+            description: 'Thank you for your message. I will get back to you soon.',
+          })
+        },
+        (err) => {
+          console.error('Failed to send email:', err)
+          toast({
+            title: 'Error!',
+            description: 'Failed to send the message. Please try again later.',
+          })
+        }
+      )
   }
 
   return (
