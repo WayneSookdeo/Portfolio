@@ -1,22 +1,62 @@
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
+'use client'
+
+import { motion } from 'framer-motion'
+import { Button } from './ui/button'
+import { GithubIcon, LinkedinIcon } from 'lucide-react'
 
 const Hero = () => {
   return (
-    <section className="py-20 text-center">
-      <h1 className="text-4xl font-bold mb-4">Nicholas Wayne Sookdeo</h1>
-      <p className="text-xl mb-8">Junior Software Developer</p>
-      <div className="flex justify-center space-x-4 mb-8">
-        <a href="https://github.com/WayneSookdeo" target="_blank" rel="noopener noreferrer" className="text-3xl hover:text-accent">
-          <FaGithub />
-        </a>
-        <a href="https://www.linkedin.com/in/nicholas-wayne-sookdeo/" target="_blank" rel="noopener noreferrer" className="text-3xl hover:text-accent">
-          <FaLinkedin />
-        </a>
-      </div>
-      <a href="#contact" className="bg-accent text-white px-6 py-2 rounded-full hover:bg-opacity-80 transition duration-300">
-        Contact Me
-      </a>
-    </section>
+    <motion.section 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="py-20 text-center"
+    >
+      <motion.h1 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-foreground"
+      >
+        Nicholas Wayne Sookdeo
+      </motion.h1>
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+        className="text-xl sm:text-2xl mb-8 text-muted-foreground"
+      >
+        Junior Software Developer
+      </motion.p>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+        className="flex justify-center space-x-4 mb-8"
+      >
+        <Button variant="outline" size="icon" asChild>
+          <a href="https://github.com/WayneSookdeo" target="_blank" rel="noopener noreferrer" className="text-3xl hover:text-primary">
+            <GithubIcon className="h-6 w-6" />
+            <span className="sr-only">GitHub</span>
+          </a>
+        </Button>
+        <Button variant="outline" size="icon" asChild>
+          <a href="https://www.linkedin.com/in/nicholas-wayne-sookdeo/" target="_blank" rel="noopener noreferrer" className="text-3xl hover:text-primary">
+            <LinkedinIcon className="h-6 w-6" />
+            <span className="sr-only">LinkedIn</span>
+          </a>
+        </Button>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.8, duration: 0.5 }}
+      >
+        <Button asChild>
+          <a href="#contact">Contact Me</a>
+        </Button>
+      </motion.div>
+    </motion.section>
   )
 }
 
