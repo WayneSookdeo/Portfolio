@@ -14,6 +14,7 @@ const contactLinks = [
     label: 'waynesookdeo@gmail.com',
     href: 'mailto:waynesookdeo@gmail.com',
   },
+
   {
     icon: Linkedin,
     label: 'linkedin.com/in/nicholas-wayne-sookdeo',
@@ -26,26 +27,38 @@ const contactLinks = [
   },
 ]
 
+const encode = (data: Record<string, string>) =>
+  Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&')
+
 const Contact = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setStatus('submitting')
 
-    const form = e.currentTarget
-    const data = new FormData(form)
-
     try {
       const res = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+        body: encode({
+          'form-name': 'contact',
+          name,
+          email,
+          message,
+        }),
       })
 
       if (res.ok) {
         setStatus('success')
-        form.reset()
+        setName('')
+        setEmail('')
+        setMessage('')
       } else {
         setStatus('error')
       }
@@ -148,31 +161,15 @@ const Contact = () => {
                     </Button>
                   </motion.div>
                 ) : (
-                  /*
-                   * Netlify Forms:
-                   * - data-netlify="true" enables Netlify's form detection at build time.
-                   * - The hidden input name="form-name" is required for AJAX submissions.
-                   * - The bot-field input is a honeypot to block spam bots.
-                   * Make sure you add a hidden <form> with the same name in your index.html
-                   * so Netlify can detect it during the build (see Netlify Forms docs).
-                   */
                   <form
                     name="contact"
                     method="POST"
-                    data-netlify="true"
-                    data-netlify-honeypot="bot-field"
                     onSubmit={handleSubmit}
                     className="space-y-4"
                   >
-                    {/* Required hidden fields for Netlify Forms AJAX */}
-                    <input type="hidden" name="form-name" value="contact" />
-
-                    {/* Honeypot field — hidden from real users, traps bots */}
+                    {/* Honeypot — hidden from real users, traps spam bots */}
                     <div className="hidden" aria-hidden="true">
-                      <label>
-                        Don't fill this out if you're human:
-                        <input name="bot-field" tabIndex={-1} autoComplete="off" />
-                      </label>
+                      <input name="bot-field" tabIndex={-1} autoComplete="off" />
                     </div>
 
                     <div>
@@ -188,6 +185,8 @@ const Contact = () => {
                         type="text"
                         required
                         placeholder="Your name"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
                         className="bg-zinc-700 border-zinc-600 text-zinc-100 placeholder:text-zinc-500 focus:border-blue-500 focus:ring-blue-500/20"
                       />
                     </div>
@@ -205,6 +204,8 @@ const Contact = () => {
                         type="email"
                         required
                         placeholder="your@email.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="bg-zinc-700 border-zinc-600 text-zinc-100 placeholder:text-zinc-500 focus:border-blue-500 focus:ring-blue-500/20"
                       />
                     </div>
@@ -222,6 +223,8 @@ const Contact = () => {
                         required
                         rows={4}
                         placeholder="What's on your mind?"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
                         className="bg-zinc-700 border-zinc-600 text-zinc-100 placeholder:text-zinc-500 focus:border-blue-500 focus:ring-blue-500/20 resize-none"
                       />
                     </div>
@@ -238,7 +241,7 @@ const Contact = () => {
                       className="w-full bg-blue-600 hover:bg-blue-500 text-white gap-2 disabled:opacity-60"
                     >
                       {status === 'submitting' ? (
-                        <>Sending…</>
+                        'Sending…'
                       ) : (
                         <>
                           <Send className="w-4 h-4" />
