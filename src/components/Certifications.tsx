@@ -10,7 +10,7 @@ const certifications = [
   {
     title: 'AWS Cloud Practitioner Essentials',
     issuer: 'Amazon Web Services',
-    year: '2024',
+    year: '2026',
     iconBg: 'bg-amber-500/10',
     iconColor: 'text-amber-400',
     borderAccent: 'hover:border-amber-500/40',
@@ -25,7 +25,7 @@ const certifications = [
   {
     title: 'Data Engineering on AWS – Foundations',
     issuer: 'Amazon Web Services',
-    year: '2024',
+    year: '2026',
     iconBg: 'bg-blue-500/10',
     iconColor: 'text-blue-400',
     borderAccent: 'hover:border-blue-500/40',
