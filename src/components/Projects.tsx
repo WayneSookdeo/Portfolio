@@ -25,6 +25,26 @@ const projects = [
     topLine: 'rgba(52,211,153,0.5)',
   },
   {
+    id: 'pl-tracker',
+    title: 'Premier League Tracker',
+    description:
+      'A live Premier League dashboard with AI-powered match predictions. Pulls real fixtures and standings, then uses Groq (Llama 3) to predict upcoming match outcomes with confidence scores and reasoning.',
+    features: [
+      'Live standings with points, form & goal difference',
+      'Upcoming fixtures with kick-off times',
+      'AI match predictions via Groq (Llama 3.3-70b)',
+      'Confidence scores and reasoning per match',
+      'Data pipeline via Supabase Edge Functions',
+    ],
+    stack: ['Next.js 14', 'Supabase', 'PostgreSQL', 'Groq', 'Llama 3', 'TheSportsDB API', 'Tailwind CSS'],
+    liveUrl: 'https://nicholas-pl-tracker.netlify.app/',
+    githubUrl: 'https://github.com/WayneSookdeo/pl-trackers',
+    status: 'Live',
+    statusColor: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
+    hoverBorder: 'hover:border-emerald-500/30',
+    topLine: 'rgba(52,211,153,0.5)',
+  },
+  {
     id: 'portfolio',
     title: 'Personal Portfolio Website',
     description:
@@ -83,7 +103,7 @@ export default function Projects() {
 
         {/* Cards */}
         <motion.div
-          className="max-w-5xl mx-auto grid md:grid-cols-2 gap-5"
+          className="max-w-5xl mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-5"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -104,12 +124,10 @@ export default function Projects() {
               {/* Header row */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1 min-w-0 mr-3">
-                  <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <h3 className="text-base font-bold text-zinc-100">{project.title}</h3>
-                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border flex-shrink-0 ${project.statusColor}`}>
-                      {project.status}
-                    </span>
-                  </div>
+                  <h3 className="text-base font-bold text-zinc-100 mb-1">{project.title}</h3>
+                  <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${project.statusColor}`}>
+                    {project.status}
+                  </span>
                 </div>
 
                 {/* Icons */}
@@ -125,7 +143,7 @@ export default function Projects() {
                       <Github className="w-3.5 h-3.5" />
                     </a>
                   )}
-                  
+                 
                 </div>
               </div>
 
@@ -157,15 +175,17 @@ export default function Projects() {
               </div>
 
               {/* View link */}
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/link flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-200 transition-colors duration-200 w-fit"
-              >
-                View project
-                <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-              </a>
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/link flex items-center gap-1.5 text-xs font-medium text-zinc-500 hover:text-zinc-200 transition-colors duration-200 w-fit"
+                >
+                  View project
+                  <ArrowUpRight className="w-3 h-3 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                </a>
+              )}
             </motion.div>
           ))}
         </motion.div>
